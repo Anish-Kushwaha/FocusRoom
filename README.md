@@ -5,7 +5,7 @@ A modern, distraction-free, single-page study web application built specifically
 The platform runs entirely in the browser and focuses on deep study, discipline, and long-term consistency without distractions.
 
 🔗 Live Website  
-https://anish-kushwaha.github.io/Study
+https://anish-kushwaha.github.io/FocusRoom
 
 ---
 
