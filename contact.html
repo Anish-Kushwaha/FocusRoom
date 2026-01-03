@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Contact & Policy | FocusRoom</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== GLOBAL RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ===== BODY ===== */
+body{
+  background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);
+  color:#e5e7eb;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  background:rgba(2,6,23,.95);
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(30,41,59,.5);
+}
+nav .logo{
+  font-size:1.5rem;
+  font-weight:700;
+  color:#22c55e;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+nav .links a{
+  margin-left:1.8rem;
+  text-decoration:none;
+  color:#9ca3af;
+  font-size:.95rem;
+  font-weight:500;
+  padding:.4rem .8rem;
+  border-radius:6px;
+  transition:.3s;
+}
+nav .links a:hover{
+  color:#38bdf8;
+  background:rgba(56,189,248,.1);
+}
+nav .links a.active{
+  color:#22c55e;
+  background:rgba(34,197,94,.1);
+}
+
+/* ===== MAIN CONTENT ===== */
+main{
+  max-width:1100px;
+  margin:0 auto;
+  padding:3rem 2rem 4rem;
+}
+
+.section{
+  background:rgba(17,24,39,.8);
+  border:1px solid rgba(56,189,248,.15);
+  border-radius:16px;
+  padding:2.5rem;
+  margin-bottom:2.5rem;
+}
+
+.section h2{
+  font-size:2rem;
+  margin-bottom:1rem;
+  color:#f8fafc;
+}
+
+.section p,
+.section li{
+  color:#94a3b8;
+  font-size:1.05rem;
+  line-height:1.7;
+}
+
+.section ul{
+  margin-left:1.5rem;
+  margin-top:1rem;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:auto;
+  background:rgba(2,6,23,.95);
+  border-top:1px solid rgba(30,41,59,.5);
+  padding:2.5rem 1.5rem;
+  text-align:center;
+}
+footer .quote{
+  font-style:italic;
+  font-size:1.1rem;
+  color:#e5e7eb;
+  margin-bottom:1.5rem;
+}
+footer .meta{
+  color:#9ca3b8;
+  font-size:.9rem;
+  line-height:1.6;
+}
+footer .symbol{
+  margin-top:1.5rem;
+  font-size:1.3rem;
+  letter-spacing:.5rem;
+  color:#22c55e;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  nav{
+    flex-direction:column;
+    gap:1rem;
+  }
+  nav .links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:.5rem;
+  }
+  nav .links a{
+    margin-left:0;
+  }
+  main{
+    padding:2rem 1rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="logo">
+    <i class="fas fa-brain"></i> FocusRoom
+  </div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="study.html">Timer ⏲️</a>
+    <a href="rooms.html">Study Rooms 🧑🏻‍💻</a>
+    <a href="features.html">Progress📈 </a>
+    <a href="contact.html" class="active">Contact 💀</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== CREATOR INFO ===== -->
+<section class="section">
+  <h2><i class="fas fa-user"></i> Creator Information</h2>
+  <p>
+    FocusRoom is independently designed and developed by <strong>Anish Kushwaha</strong>
+    as a privacy-first, distraction-free study platform dedicated to CISCE
+    (ICSE & ISC) students preparing for the 2026 board examinations.
+  </p>
+  <p>
+    This platform is built with the philosophy that technology should
+    <em>support focus, not exploit attention</em>.
+  </p>
+</section>
+
+<!-- ===== PRIVACY POLICY ===== -->
+<section class="section">
+  <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+
+  <p>
+    FocusRoom respects your privacy by design.
+    This website operates entirely on the client side and does not collect,
+    transmit, or store personal data on any external servers.
+  </p>
+
+  <ul>
+    <li>No user accounts or logins are required.</li>
+    <li>No tracking cookies, analytics, or third-party trackers are used.</li>
+    <li>No personal information is collected or shared.</li>
+    <li>All data (timers, goals, notes) is stored locally in your browser.</li>
+    <li>Clearing your browser data permanently removes all stored information.</li>
+  </ul>
+
+  <p style="margin-top:1rem;">
+    FocusRoom does <strong>not</strong> use advertising networks,
+    fingerprinting, screen monitoring, or behavioral analytics.
+  </p>
+</section>
+
+<!-- ===== COPYRIGHT ===== -->
+<section class="section">
+  <h2><i class="fas fa-copyright"></i> Copyright & Usage</h2>
+
+  <p>
+    © 2026 Anish Kushwaha. All rights reserved.
+  </p>
+
+  <ul>
+    <li>This website and its source code are protected under applicable copyright laws.</li>
+    <li>Unauthorized reproduction, modification, or redistribution is prohibited.</li>
+    <li>Educational reference is permitted with proper credit.</li>
+  </ul>
+
+  <p style="margin-top:1rem; font-style:italic;">
+    “I don’t follow the universe — I reprogram it.”
+  </p>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p class="quote">"Discipline is choosing between what you want now and what you want most."</p>
+  <div class="meta">
+    © 2026 Anish Kushwaha • All rights reserved
+  </div>
+  <div class="symbol">⚚Ⓐ⚚</div>
+</footer>
+
+</body>
+  </html>
