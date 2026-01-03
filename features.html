@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Progress Tracking | FocusRoom - CISCE Boards 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== BODY ===== */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e5e7eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  background: rgba(5, 10, 25, 0.95);
+  padding: 1rem 1rem 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* LOGO CENTER */
+nav .logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+/* LINKS GRID (2 ROWS × 3 COLS) */
+nav .links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem 1.2rem;
+  width: 100%;
+  max-width: 420px;
+  justify-items: center;
+}
+
+/* NAV LINKS */
+nav .links a {
+  text-decoration: none;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+nav .links a:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+}
+
+/* ACTIVE TAB */
+nav .links a.active {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.18);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+  width: 100%;
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(56, 189, 248, 0.1) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ===== PROGRESS OVERVIEW ===== */
+.progress-overview {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.stat-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.stat-title {
+  font-size: 1rem;
+  color: #f8fafc;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.stat-change {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stat-change.positive {
+  color: #22c55e;
+}
+
+.stat-change.negative {
+  color: #ef4444;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #1f2937;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 0.8rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #22c55e, #38bdf8);
+  border-radius: 8px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ===== SUBJECT PROGRESS ===== */
+.subject-progress {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.subjects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.subject-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+  transition: all 0.3s;
+}
+
+.subject-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.subject-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.subject-score {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.subject-progress-bar {
+  height: 8px;
+  background: #1f2937;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.subject-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ===== STUDY ANALYTICS ===== */
+.study-analytics {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.analytics-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.analytics-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.analytics-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.chart-container {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 8px;
+}
+
+.bar {
+  flex: 1;
+  background: linear-gradient(to top, #22c55e, #38bdf8);
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  transition: height 0.5s ease;
+  position: relative;
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ===== GOALS ===== */
+.goals-section {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.goal-item {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+  transition: all 0.3s;
+}
+
+.goal-item:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.goal-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.goal-status {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.status-complete {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.status-in-progress {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+
+.status-not-started {
+  background: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.goal-progress {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goal-progress-bar {
+  height: 6px;
+  background: #1f2937;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.goal-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ===== REPORT SECTION ===== */
+.report-section {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.report-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.report-btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.report-btn.primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #020617;
+}
+
+.report-btn.secondary {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.report-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.report-btn.primary:hover {
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+}
+
+.report-btn.secondary:hover {
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: auto;
+  background: rgba(2, 6, 23, 0.95);
+  border-top: 1px solid rgba(30, 41, 59, 0.5);
+  padding: 2rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+footer .quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #e5e7eb;
+  margin-bottom: 1.2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  font-weight: 300;
+  padding: 0 0.5rem;
+}
+
+footer .meta {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+footer .symbol {
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.5rem;
+  color: #22c55e;
+  font-weight: 300;
+}
+
+footer .boards-info {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  width: calc(100% - 2rem);
+}
+
+footer .boards-info h4 {
+  color: #38bdf8;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+  position: fixed;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #020617;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 1001;
+  max-width: 90%;
+  text-align: center;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Desktop Notification */
+@media (min-width: 768px) {
+  .notification {
+    bottom: 2rem;
+    right: 2rem;
+    left: auto;
+    transform: none;
+  }
+}
+
+/* Mobile Notification */
+@media (max-width: 767px) {
+  .notification {
+    top: 7.5rem;
+    width: calc(100% - 2rem);
+  }
+}
+
+/* ===== DESKTOP ENHANCEMENTS ===== */
+@media (min-width: 768px) {
+  /* Navbar */
+  nav {
+    padding: 1.2rem 2rem 1.4rem;
+  }
+  
+  nav .links {
+    max-width: 480px;
+    gap: 1rem 1.5rem;
+  }
+  
+  nav .links a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Main Container */
+  .main-container {
+    padding: 2rem;
+  }
+  
+  /* Header */
+  .page-header {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  
+  .page-header .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  /* Overview Stats */
+  .overview-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
+  
+  /* Subject Progress */
+  .subjects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .subject-card {
+    padding: 1.5rem;
+  }
+  
+  /* Analytics Grid */
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .analytics-card {
+    padding: 1.5rem;
+  }
+  
+  /* Goals List */
+  .goals-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .goal-item {
+    padding: 1.5rem;
+  }
+  
+  /* Report Actions */
+  .report-actions {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  .report-btn {
+    flex: 1;
+  }
+  
+  /* Containers */
+  .progress-overview,
+  .subject-progress,
+  .study-analytics,
+  .goals-section,
+  .report-section {
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .overview-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .subjects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .page-header h1 {
+    font-size: 3.2rem;
+  }
+}
+
+/* ===== TABLET OPTIMIZATIONS ===== */
+@media (min-width: 640px) and (max-width: 767px) {
+  .overview-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .subjects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .goals-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ===== SMALL MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 360px) {
+  nav .links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .page-header .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .stat-value,
+  .subject-score {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+@media (hover: none) {
+  .stat-card:hover,
+  .subject-card:hover,
+  .analytics-card:hover,
+  .goal-item:hover,
+  .report-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="index.html" class="logo">
+    <i class="fas fa-brain"></i> FocusRoom
+  </a>
+  <div class="links">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="timer.html"><i class="fas fa-stopwatch"></i> Timer</a>
+    <a href="study-rooms.html"><i class="fas fa-users"></i> Rooms</a>
+    <a href="#" class="active"><i class="fas fa-chart-line"></i> Progress</a>
+    <a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</nav>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="main-container">
+  
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1><i class="fas fa-chart-line"></i> PROGRESS TRACKING</h1>
+    <p class="subtitle">Track your CISCE 2026 preparation • Monitor study patterns • Set and achieve academic goals</p>
+  </div>
+  
+  <!-- PROGRESS OVERVIEW -->
+  <div class="progress-overview">
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 1.5rem;">
+      <i class="fas fa-tachometer-alt"></i> Overall Progress
+    </h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+      Your comprehensive study dashboard for CISCE Boards 2026
+    </p>
+    
+    <div class="overview-stats">
+      <div class="stat-card" style="border-left-color: #22c55e;">
+        <div class="stat-header">
+          <div class="stat-title">
+            <i class="fas fa-clock"></i> Total Study Hours
+          </div>
+          <div class="stat-value" id="totalStudyHours">42.5</div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i> +5.2h this week
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="studyHoursProgress" style="width: 85%"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card" style="border-left-color: #3b82f6;">
+        <div class="stat-header">
+          <div class="stat-title">
+            <i class="fas fa-check-circle"></i> Focus Sessions
+          </div>
+          <div class="stat-value" id="totalSessions">67</div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i> +12 this week
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="sessionsProgress" style="width: 78%"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card" style="border-left-color: #8b5cf6;">
+        <div class="stat-header">
+          <div class="stat-title">
+            <i class="fas fa-fire"></i> Current Streak
+          </div>
+          <div class="stat-value" id="currentStreak">14</div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i> +3 days
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="streakProgress" style="width: 93%"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card" style="border-left-color: #ec4899;">
+        <div class="stat-header">
+          <div class="stat-title">
+            <i class="fas fa-star"></i> Productivity Score
+          </div>
+          <div class="stat-value" id="productivityScore">87%</div>
+        </div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up"></i> +5% this week
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="productivityProgress" style="width: 87%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- SUBJECT PROGRESS -->
+  <div class="subject-progress">
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 1.5rem;">
+      <i class="fas fa-book-open"></i> Subject-wise Progress
+    </h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+      Track your progress across all CISCE subjects
+    </p>
+    
+    <div class="subjects-grid" id="subjectsGrid">
+      <!-- Subjects will be populated by JavaScript -->
+    </div>
+  </div>
+  
+  <!-- STUDY ANALYTICS -->
+  <div class="study-analytics">
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 1.5rem;">
+      <i class="fas fa-chart-bar"></i> Study Analytics
+    </h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+      Weekly study patterns and performance trends
+    </p>
+    
+    <div class="analytics-grid">
+      <div class="analytics-card">
+        <div class="analytics-header">
+          <i class="fas fa-calendar-week"></i> Weekly Study Hours
+        </div>
+        <div class="chart-container" id="weeklyChart">
+          <!-- Chart bars will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="analytics-card">
+        <div class="analytics-header">
+          <i class="fas fa-brain"></i> Focus Distribution
+        </div>
+        <div class="chart-container" id="focusChart">
+          <!-- Chart bars will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="analytics-card">
+        <div class="analytics-header">
+          <i class="fas fa-bullseye"></i> Goal Completion
+        </div>
+        <div class="chart-container" id="goalsChart">
+          <!-- Chart bars will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- GOALS -->
+  <div class="goals-section">
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 1.5rem;">
+      <i class="fas fa-bullseye"></i> Academic Goals
+    </h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+      Set and track your CISCE 2026 preparation goals
+    </p>
+    
+    <div class="goals-list" id="goalsList">
+      <!-- Goals will be populated by JavaScript -->
+    </div>
+    
+    <div style="margin-top: 1.5rem;">
+      <button class="report-btn secondary" id="addGoalBtn">
+        <i class="fas fa-plus"></i> Add New Goal
+      </button>
+    </div>
+  </div>
+  
+  <!-- REPORT SECTION -->
+  <div class="report-section">
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 1.5rem;">
+      <i class="fas fa-file-alt"></i> Progress Reports
+    </h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+      Generate detailed reports of your study progress
+    </p>
+    
+    <div class="report-actions">
+      <button class="report-btn primary" id="weeklyReportBtn">
+        <i class="fas fa-download"></i> Weekly Report
+      </button>
+      <button class="report-btn secondary" id="monthlyReportBtn">
+        <i class="fas fa-file-pdf"></i> Monthly Report
+      </button>
+      <button class="report-btn secondary" id="subjectReportBtn">
+        <i class="fas fa-book"></i> Subject Report
+      </button>
+    </div>
+  </div>
+  
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="boards-info">
+    <h4>Dedicated to CISCE Boards 2026</h4>
+    <p>ICSE (Class 10) & ISC (Class 12) students can use this platform for focused preparation and collaborative study sessions.</p>
+  </div>
+  
+  <p class="quote">"The secret of getting ahead is getting started." — Mark Twain</p>
+  
+  <div class="meta">
+    <p style="font-style: italic; margin-bottom: 0.5rem;">"I don't follow the universe — I reprogram it."</p>
+    © 2026 Anish Kushwaha • All rights reserved<br>
+  </div>
+
+  <div class="symbol">
+    ⚚Ⓐ⚚
+  </div>
+</footer>
+
+<!-- ===== NOTIFICATION ===== -->
+<div class="notification" id="notification">
+  Progress updated successfully!
+</div>
+
+<script>
+// ===== DEFAULT PROGRESS DATA =====
+const defaultProgressData = {
+  totalHours: 42.5,
+  totalSessions: 67,
+  currentStreak: 14,
+  productivityScore: 87,
+  subjects: [
+    { name: "Mathematics", score: 85, color: "#3b82f6", hours: 12.5 },
+    { name: "Physics", score: 78, color: "#ef4444", hours: 8.2 },
+    { name: "Chemistry", score: 82, color: "#ec4899", hours: 7.8 },
+    { name: "English", score: 90, color: "#f59e0b", hours: 6.5 },
+    { name: "History", score: 75, color: "#8b5cf6", hours: 5.2 },
+    { name: "Computer Science", score: 88, color: "#06b6d4", hours: 9.3 }
+  ],
+  weeklyData: [
+    { day: "Mon", hours: 4.2 },
+    { day: "Tue", hours: 5.8 },
+    { day: "Wed", hours: 3.5 },
+    { day: "Thu", hours: 6.2 },
+    { day: "Fri", hours: 4.8 },
+    { day: "Sat", hours: 7.5 },
+    { day: "Sun", hours: 5.3 }
+  ],
+  goals: [
+    { 
+      id: 1, 
+      title: "Complete Mathematics Syllabus", 
+      progress: 75, 
+      status: "in-progress",
+      color: "#3b82f6",
+      deadline: "2026-02-15"
+    },
+    { 
+      id: 2, 
+      title: "Physics Numericals Practice", 
+      progress: 60, 
+      status: "in-progress",
+      color: "#ef4444",
+      deadline: "2026-02-28"
+    },
+    { 
+      id: 3, 
+      title: "English Literature Revision", 
+      progress: 100, 
+      status: "complete",
+      color: "#f59e0b",
+      deadline: "2026-01-31"
+    },
+    { 
+      id: 4, 
+      title: "Chemistry Practical Preparation", 
+      progress: 30, 
+      status: "in-progress",
+      color: "#ec4899",
+      deadline: "2026-03-15"
+    }
+  ]
+};
+
+// ===== GLOBAL VARIABLES =====
+let progressData = { ...defaultProgressData };
+
+// ===== INITIALIZE APP =====
+function initApp() {
+  loadProgressData();
+  renderAllData();
+  setupEventListeners();
+}
+
+// ===== LOAD PROGRESS DATA =====
+function loadProgressData() {
+  const savedData = localStorage.getItem('focusroom_progress_data');
+  
+  if (savedData) {
+    try {
+      const parsedData = JSON.parse(savedData);
+      // Merge saved data with defaults to ensure all fields exist
+      progressData = {
+        ...defaultProgressData,
+        ...parsedData,
+        subjects: parsedData.subjects || defaultProgressData.subjects,
+        weeklyData: parsedData.weeklyData || defaultProgressData.weeklyData,
+        goals: parsedData.goals || defaultProgressData.goals
+      };
+    } catch (e) {
+      console.error("Error loading saved data, using defaults:", e);
+      progressData = { ...defaultProgressData };
+      saveProgressData();
+    }
+  } else {
+    // First time user - save defaults
+    progressData = { ...defaultProgressData };
+    saveProgressData();
+  }
+}
+
+// ===== RENDER ALL DATA =====
+function renderAllData() {
+  // Update overview stats
+  document.getElementById('totalStudyHours').textContent = progressData.totalHours.toFixed(1);
+  document.getElementById('totalSessions').textContent = progressData.totalSessions;
+  document.getElementById('currentStreak').textContent = progressData.currentStreak;
+  document.getElementById('productivityScore').textContent = progressData.productivityScore + '%';
+  
+  // Set progress bar widths
+  document.getElementById('studyHoursProgress').style.width = '85%';
+  document.getElementById('sessionsProgress').style.width = '78%';
+  document.getElementById('streakProgress').style.width = '93%';
+  document.getElementById('productivityProgress').style.width = progressData.productivityScore + '%';
+  
+  // Render subjects
+  renderSubjects();
+  
+  // Render charts
+  renderWeeklyChart();
+  renderFocusChart();
+  renderGoalsChart();
+  
+  // Render goals
+  renderGoalsList();
+}
+
+// ===== RENDER SUBJECTS =====
+function renderSubjects() {
+  const subjectsGrid = document.getElementById('subjectsGrid');
+  subjectsGrid.innerHTML = '';
+  
+  progressData.subjects.forEach(subject => {
+    const subjectCard = document.createElement('div');
+    subjectCard.className = 'subject-card';
+    subjectCard.style.borderLeftColor = subject.color;
+    
+    subjectCard.innerHTML = `
+      <div class="subject-header">
+        <div class="subject-name">
+          <i class="fas fa-book"></i> ${subject.name}
+        </div>
+        <div class="subject-score">${Math.round(subject.score)}%</div>
+      </div>
+      <div class="progress-info">
+        <span>${subject.hours.toFixed(1)} study hours</span>
+        <span>${Math.round(subject.score)}% mastery</span>
+      </div>
+      <div class="subject-progress-bar">
+        <div class="subject-progress-fill" style="width: ${subject.score}%; background: ${subject.color};"></div>
+      </div>
+    `;
+    
+    subjectsGrid.appendChild(subjectCard);
+  });
+}
+
+// ===== RENDER WEEKLY CHART =====
+function renderWeeklyChart() {
+  const weeklyChart = document.getElementById('weeklyChart');
+  weeklyChart.innerHTML = '';
+  
+  const maxHours = Math.max(...progressData.weeklyData.map(day => day.hours));
+  
+  progressData.weeklyData.forEach(day => {
+    const barHeight = (day.hours / maxHours) * 100;
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = `${barHeight}%`;
+    bar.style.background = 'linear-gradient(to top, #22c55e, #38bdf8)';
+    
+    const label = document.createElement('div');
+    label.className = 'bar-label';
+    label.textContent = day.day;
+    
+    const value = document.createElement('div');
+    value.className = 'bar-label';
+    value.textContent = `${day.hours.toFixed(1)}h`;
+    value.style.bottom = '-45px';
+    value.style.color = '#22c55e';
+    value.style.fontWeight = '600';
+    
+    bar.appendChild(label);
+    bar.appendChild(value);
+    weeklyChart.appendChild(bar);
+  });
+}
+
+// ===== RENDER FOCUS CHART =====
+function renderFocusChart() {
+  const focusChart = document.getElementById('focusChart');
+  focusChart.innerHTML = '';
+  
+  const focusTypes = [
+    { type: "Deep Focus", hours: 28.5, color: "#22c55e" },
+    { type: "Active Study", hours: 12.3, color: "#3b82f6" },
+    { type: "Review", hours: 8.7, color: "#8b5cf6" },
+    { type: "Practice", hours: 6.5, color: "#ec4899" }
+  ];
+  
+  const maxHours = Math.max(...focusTypes.map(type => type.hours));
+  
+  focusTypes.forEach((focus, index) => {
+    const barHeight = (focus.hours / maxHours) * 100;
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = `${barHeight}%`;
+    bar.style.background = focus.color;
+    
+    const label = document.createElement('div');
+    label.className = 'bar-label';
+    label.textContent = focus.type.charAt(0);
+    
+    const value = document.createElement('div');
+    value.className = 'bar-label';
+    value.textContent = `${focus.hours.toFixed(1)}h`;
+    value.style.bottom = '-45px';
+    value.style.color = focus.color;
+    value.style.fontWeight = '600';
+    
+    bar.appendChild(label);
+    bar.appendChild(value);
+    focusChart.appendChild(bar);
+  });
+}
+
+// ===== RENDER GOALS CHART =====
+function renderGoalsChart() {
+  const goalsChart = document.getElementById('goalsChart');
+  goalsChart.innerHTML = '';
+  
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+  const completionRates = [65, 72, 78, 85, 88, 91];
+  
+  const maxRate = Math.max(...completionRates);
+  
+  months.forEach((month, index) => {
+    const barHeight = (completionRates[index] / maxRate) * 100;
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = `${barHeight}%`;
+    bar.style.background = 'linear-gradient(to top, #8b5cf6, #ec4899)';
+    
+    const label = document.createElement('div');
+    label.className = 'bar-label';
+    label.textContent = month;
+    
+    const value = document.createElement('div');
+    value.className = 'bar-label';
+    value.textContent = `${completionRates[index]}%`;
+    value.style.bottom = '-45px';
+    value.style.color = '#8b5cf6';
+    value.style.fontWeight = '600';
+    
+    bar.appendChild(label);
+    bar.appendChild(value);
+    goalsChart.appendChild(bar);
+  });
+}
+
+// ===== RENDER GOALS LIST =====
+function renderGoalsList() {
+  const goalsList = document.getElementById('goalsList');
+  goalsList.innerHTML = '';
+  
+  progressData.goals.forEach(goal => {
+    const goalItem = document.createElement('div');
+    goalItem.className = 'goal-item';
+    goalItem.style.borderLeftColor = goal.color;
+    
+    const statusClass = `status-${goal.status.replace(' ', '-')}`;
+    const statusText = goal.status.charAt(0).toUpperCase() + goal.status.slice(1);
+    
+    goalItem.innerHTML = `
+      <div class="goal-header">
+        <div class="goal-title">
+          <i class="fas fa-bullseye"></i> ${goal.title}
+        </div>
+        <div class="goal-status ${statusClass}">${statusText}</div>
+      </div>
+      <div class="goal-progress">
+        <span>Progress</span>
+        <span>${goal.progress}%</span>
+      </div>
+      <div class="goal-progress-bar">
+        <div class="goal-progress-fill" style="width: ${goal.progress}%; background: ${goal.color};"></div>
+      </div>
+    `;
+    
+    goalsList.appendChild(goalItem);
+  });
+}
+
+// ===== SAVE PROGRESS DATA =====
+function saveProgressData() {
+  localStorage.setItem('focusroom_progress_data', JSON.stringify(progressData));
+}
+
+// ===== ADD NEW GOAL =====
+function addNewGoal() {
+  const goals = progressData.goals;
+  const newGoalId = goals.length > 0 ? Math.max(...goals.map(g => g.id)) + 1 : 1;
+  
+  const colors = ["#22c55e", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b", "#06b6d4"];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  
+  const subjects = ["Mathematics", "Physics", "Chemistry", "English", "History", "Computer Science"];
+  const randomSubject = subjects[Math.floor(Math.random() * subjects.length)];
+  
+  const goalTypes = [
+    `Complete ${randomSubject} Chapter`,
+    `Solve ${randomSubject} Practice Questions`,
+    `Revise ${randomSubject} Important Topics`,
+    `Master ${randomSubject} Concepts`
+  ];
+  const randomType = goalTypes[Math.floor(Math.random() * goalTypes.length)];
+  
+  const newGoal = {
+    id: newGoalId,
+    title: randomType,
+    progress: 0,
+    status: "not-started",
+    color: randomColor,
+    deadline: "2026-03-31"
+  };
+  
+  progressData.goals.push(newGoal);
+  saveProgressData();
+  renderGoalsList();
+  showNotification("New goal added successfully!");
+}
+
+// ===== GENERATE REPORT =====
+function generateReport(type) {
+  let reportContent = '';
+  let reportTitle = '';
+  
+  switch(type) {
+    case 'weekly':
+      reportTitle = 'Weekly Progress Report';
+      reportContent = `Weekly Study Report\n`;
+      reportContent += `====================\n\n`;
+      reportContent += `Total Study Hours: ${progressData.totalHours.toFixed(1)}h\n`;
+      reportContent += `Focus Sessions: ${progressData.totalSessions}\n`;
+      reportContent += `Productivity Score: ${progressData.productivityScore}%\n`;
+      reportContent += `Current Streak: ${progressData.currentStreak} days\n\n`;
+      reportContent += `Weekly Breakdown:\n`;
+      progressData.weeklyData.forEach(day => {
+        reportContent += `${day.day}: ${day.hours.toFixed(1)} hours\n`;
+      });
+      break;
+      
+    case 'monthly':
+      reportTitle = 'Monthly Progress Report';
+      reportContent = `Monthly Study Report\n`;
+      reportContent += `====================\n\n`;
+      reportContent += `Overall Progress Summary\n`;
+      reportContent += `Total Hours: ${progressData.totalHours.toFixed(1)}h\n`;
+      reportContent += `Average Daily: ${(progressData.totalHours / 30).toFixed(1)}h\n`;
+      reportContent += `Streak: ${progressData.currentStreak} days\n`;
+      reportContent += `Productivity: ${progressData.productivityScore}%\n\n`;
+      reportContent += `Subject Performance:\n`;
+      progressData.subjects.forEach(subject => {
+        reportContent += `${subject.name}: ${subject.score}% (${subject.hours.toFixed(1)}h)\n`;
+      });
+      break;
+      
+    case 'subject':
+      reportTitle = 'Subject-wise Report';
+      reportContent = `Subject Performance Report\n`;
+      reportContent += `=========================\n\n`;
+      progressData.subjects.forEach(subject => {
+        reportContent += `${subject.name}\n`;
+        reportContent += `Score: ${subject.score}%\n`;
+        reportContent += `Study Hours: ${subject.hours.toFixed(1)}h\n`;
+        reportContent += `Progress: ${subject.score}% mastery\n\n`;
+      });
+      break;
+  }
+  
+  // Add goals section
+  reportContent += `Academic Goals:\n`;
+  reportContent += `===============\n`;
+  progressData.goals.forEach(goal => {
+    reportContent += `${goal.title}: ${goal.progress}% (${goal.status})\n`;
+  });
+  
+  // Create and download report
+  const blob = new Blob([reportContent], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${reportTitle.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0,10)}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  
+  showNotification(`${reportTitle} downloaded successfully!`);
+}
+
+// ===== SHOW NOTIFICATION =====
+function showNotification(message, type = 'success') {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.style.display = 'block';
+  
+  // Set color based on type
+  if (type === 'error') {
+    notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+  } else if (type === 'warning') {
+    notification.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+  } else {
+    notification.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+  }
+  
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 3000);
+}
+
+// ===== UPDATE PROGRESS FROM TIMER =====
+function updateFromTimer(durationMinutes) {
+  const hoursToAdd = durationMinutes / 60;
+  
+  // Update total hours
+  progressData.totalHours = parseFloat((progressData.totalHours + hoursToAdd).toFixed(1));
+  
+  // Update sessions
+  progressData.totalSessions++;
+  
+  // Update streak (simplified logic)
+  progressData.currentStreak++;
+  
+  // Update productivity score
+  progressData.productivityScore = Math.min(100, progressData.productivityScore + 1);
+  
+  // Update a random subject
+  const randomSubjectIndex = Math.floor(Math.random() * progressData.subjects.length);
+  progressData.subjects[randomSubjectIndex].hours = parseFloat((progressData.subjects[randomSubjectIndex].hours + hoursToAdd).toFixed(1));
+  progressData.subjects[randomSubjectIndex].score = Math.min(100, progressData.subjects[randomSubjectIndex].score + 2);
+  
+  // Update weekly data (current day)
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const today = days[new Date().getDay()];
+  const dayIndex = progressData.weeklyData.findIndex(d => d.day === today);
+  if (dayIndex !== -1) {
+    progressData.weeklyData[dayIndex].hours = parseFloat((progressData.weeklyData[dayIndex].hours + hoursToAdd).toFixed(1));
+  }
+  
+  // Save and update UI
+  saveProgressData();
+  renderAllData();
+  
+  showNotification(`Progress updated! +${hoursToAdd.toFixed(1)} study hours added`, 'success');
+}
+
+// ===== SETUP EVENT LISTENERS =====
+function setupEventListeners() {
+  // Add Goal Button
+  document.getElementById('addGoalBtn').addEventListener('click', addNewGoal);
+  
+  // Report Buttons
+  document.getElementById('weeklyReportBtn').addEventListener('click', () => generateReport('weekly'));
+  document.getElementById('monthlyReportBtn').addEventListener('click', () => generateReport('monthly'));
+  document.getElementById('subjectReportBtn').addEventListener('click', () => generateReport('subject'));
+  
+  // Listen for timer completion from other pages
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'focusroom_timer_complete') {
+      const timerData = JSON.parse(e.newValue);
+      if (timerData && timerData.duration) {
+        updateFromTimer(timerData.duration);
+      }
+    }
+  });
+  
+  // Simulate timer completion for testing (remove in production)
+  window.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 't') {
+      e.preventDefault();
+      updateFromTimer(25);
+    }
+  });
+  
+  // Auto-update demo (for testing)
+  setInterval(() => {
+    // Randomly update a stat for demo
+    const stats = ['totalHours', 'totalSessions', 'currentStreak', 'productivityScore'];
+    const randomStat = stats[Math.floor(Math.random() * stats.length)];
+    
+    if (randomStat === 'totalHours') {
+      progressData[randomStat] = parseFloat((progressData[randomStat] + 0.1).toFixed(1));
+      document.getElementById(randomStat).textContent = progressData[randomStat].toFixed(1);
+    } else if (randomStat === 'productivityScore') {
+      progressData[randomStat] = Math.min(100, Math.round(progressData[randomStat] + 0.5));
+      document.getElementById(randomStat).textContent = progressData[randomStat] + '%';
+      document.getElementById('productivityProgress').style.width = progressData[randomStat] + '%';
+    } else {
+      progressData[randomStat]++;
+      document.getElementById(randomStat).textContent = progressData[randomStat];
+    }
+    
+    // Update a random subject
+    const randomSubjectIndex = Math.floor(Math.random() * progressData.subjects.length);
+    progressData.subjects[randomSubjectIndex].score = Math.min(100, 
+      progressData.subjects[randomSubjectIndex].score + 0.5);
+    
+    // Update subject progress bar
+    const subjectElements = document.querySelectorAll('.subject-card');
+    if (subjectElements[randomSubjectIndex]) {
+      const score = Math.round(progressData.subjects[randomSubjectIndex].score);
+      const progressFill = subjectElements[randomSubjectIndex].querySelector('.subject-progress-fill');
+      const scoreElement = subjectElements[randomSubjectIndex].querySelector('.subject-score');
+      
+      if (progressFill) progressFill.style.width = `${score}%`;
+      if (scoreElement) scoreElement.textContent = `${score}%`;
+    }
+    
+    saveProgressData();
+  }, 30000); // Update every 30 seconds
+}
+
+// ===== INITIALIZE =====
+window.addEventListener('DOMContentLoaded', initApp);
+
+// Fix iOS input focus issues
+if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+  document.addEventListener('touchstart', function() {}, {passive: true});
+}
+
+// Debug: Check if data is loading
+console.log("Progress Tracking Page Loaded");
+console.log("Default values should appear immediately");
+</script>
+</body>
+  </html>
