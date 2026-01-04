@@ -3,148 +3,785 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Contact & Policy | FocusRoom</title>
-
+<title>Creator Intro | FocusRoom - CISCE Boards 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* ===== GLOBAL RESET ===== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',system-ui,sans-serif;
-  -webkit-tap-highlight-color:transparent;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== BODY ===== */
-body{
-  background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);
-  color:#e5e7eb;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  overflow-x:hidden;
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e5e7eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* ===== NAVBAR ===== */
-nav{
-  background:rgba(2,6,23,.95);
-  padding:1rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(30,41,59,.5);
-}
-nav .logo{
-  font-size:1.5rem;
-  font-weight:700;
-  color:#22c55e;
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-}
-nav .links a{
-  margin-left:1.8rem;
-  text-decoration:none;
-  color:#9ca3af;
-  font-size:.95rem;
-  font-weight:500;
-  padding:.4rem .8rem;
-  border-radius:6px;
-  transition:.3s;
-}
-nav .links a:hover{
-  color:#38bdf8;
-  background:rgba(56,189,248,.1);
-}
-nav .links a.active{
-  color:#22c55e;
-  background:rgba(34,197,94,.1);
+/* ===== NAVBAR (EXACT 2-ROW LAYOUT) ===== */
+nav {
+  background: rgba(2, 6, 23, 0.95);
+  padding: 1rem 1rem 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ===== MAIN CONTENT ===== */
-main{
-  max-width:1100px;
-  margin:0 auto;
-  padding:3rem 2rem 4rem;
+/* LOGO */
+nav .logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin-bottom: 1rem;
 }
 
-.section{
-  background:rgba(17,24,39,.8);
-  border:1px solid rgba(56,189,248,.15);
-  border-radius:16px;
-  padding:2.5rem;
-  margin-bottom:2.5rem;
+/* LINKS GRID */
+nav .links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 🔥 3 per row */
+  gap: 0.9rem 1.2rem;
+  width: 100%;
+  max-width: 420px;
+  justify-items: center;
 }
 
-.section h2{
-  font-size:2rem;
-  margin-bottom:1rem;
-  color:#f8fafc;
+/* LINK STYLE */
+nav .links a {
+  text-decoration: none;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
 }
 
-.section p,
-.section li{
-  color:#94a3b8;
-  font-size:1.05rem;
-  line-height:1.7;
+/* HOVER */
+nav .links a:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
 }
 
-.section ul{
-  margin-left:1.5rem;
-  margin-top:1rem;
+/* ACTIVE (Contact) */
+nav .links a.active {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.18);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+  width: 100%;
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(56, 189, 248, 0.1) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  animation: slideDown 0.8s ease-out;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ===== CONTENT GRID ===== */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* ===== CREATOR PROFILE SECTION ===== */
+.creator-profile {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.creator-profile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, #22c55e, #38bdf8);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .profile-header {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #22c55e;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.3rem;
+  background: linear-gradient(to right, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-title {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.profile-signature {
+  font-style: italic;
+  color: #22c55e;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-left: 3px solid #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 0 8px 8px 0;
+}
+
+/* ===== CONTACT INFO SECTION ===== */
+.contact-info {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+/* ===== SOCIAL MEDIA SECTION ===== */
+.social-media {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+/* ===== POLICIES SECTION ===== */
+.policies {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(30, 41, 59, 0.9));
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out 0.8s both;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title i {
+  color: #22c55e;
+}
+
+/* ===== GRID LAYOUTS ===== */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .grid-2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+/* ===== INFO CARDS ===== */
+.info-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+  transition: all 0.3s;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.card-icon {
+  font-size: 1.2rem;
+  color: #22c55e;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.card-content {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.card-link {
+  color: #38bdf8;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  word-break: break-all;
+}
+
+.card-link:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}
+
+/* ===== SOCIAL LINKS ===== */
+.social-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #e5e7eb;
+  transition: all 0.3s;
+  border-left: 4px solid;
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.social-link:hover {
+  transform: translateX(5px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.github { background: linear-gradient(135deg, #333, #6e5494); border-color: #6e5494; }
+.linkedin { background: linear-gradient(135deg, #0077b5, #00a0dc); border-color: #0077b5; }
+.twitter { background: linear-gradient(135deg, #000000, #1da1f2); border-color: #1da1f2; }
+.facebook { background: linear-gradient(135deg, #1877f2, #3b5998); border-color: #1877f2; }
+.telegram { background: linear-gradient(135deg, #0088cc, #2ca5e0); border-color: #0088cc; }
+.youtube { background: linear-gradient(135deg, #ff0000, #c4302b); border-color: #ff0000; }
+.leetcode { background: linear-gradient(135deg, #ffa116, #fea116); border-color: #ffa116; }
+.hackerrank { background: linear-gradient(135deg, #1ba94c, #2ec866); border-color: #1ba94c; }
+.chess { background: linear-gradient(135deg, #779954, #b58863); border-color: #779954; }
+.email { background: linear-gradient(135deg, #ea4335, #fbbc05); border-color: #ea4335; }
+.website { background: linear-gradient(135deg, #4285f4, #34a853); border-color: #4285f4; }
+
+.social-info {
+  flex: 1;
+}
+
+.social-platform {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #f8fafc;
+  margin-bottom: 0.2rem;
+}
+
+.social-handle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* ===== POLICY CARDS ===== */
+.policy-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  border-left: 4px solid;
+  transition: all 0.3s;
+  animation: fadeInRight 0.5s ease-out;
+}
+
+.policy-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 41, 59, 0.9);
+}
+
+.policy-card.privacy {
+  border-left-color: #22c55e;
+}
+
+.policy-card.copyright {
+  border-left-color: #38bdf8;
+}
+
+.policy-card.disclaimer {
+  border-left-color: #8b5cf6;
+}
+
+.policy-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.policy-content {
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.policy-content ul {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.policy-content li {
+  margin-bottom: 0.3rem;
 }
 
 /* ===== FOOTER ===== */
-footer{
-  margin-top:auto;
-  background:rgba(2,6,23,.95);
-  border-top:1px solid rgba(30,41,59,.5);
-  padding:2.5rem 1.5rem;
-  text-align:center;
-}
-footer .quote{
-  font-style:italic;
-  font-size:1.1rem;
-  color:#e5e7eb;
-  margin-bottom:1.5rem;
-}
-footer .meta{
-  color:#9ca3b8;
-  font-size:.9rem;
-  line-height:1.6;
-}
-footer .symbol{
-  margin-top:1.5rem;
-  font-size:1.3rem;
-  letter-spacing:.5rem;
-  color:#22c55e;
+footer {
+  margin-top: auto;
+  background: rgba(2, 6, 23, 0.95);
+  border-top: 1px solid rgba(30, 41, 59, 0.5);
+  padding: 2rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  nav{
-    flex-direction:column;
-    gap:1rem;
+footer .quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #e5e7eb;
+  margin-bottom: 1.2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  font-weight: 300;
+  padding: 0 0.5rem;
+}
+
+footer .meta {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+footer .symbol {
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.5rem;
+  color: #22c55e;
+  font-weight: 300;
+}
+
+footer .boards-info {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  width: calc(100% - 2rem);
+}
+
+footer .boards-info h4 {
+  color: #38bdf8;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-  nav .links{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:.5rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  nav .links a{
-    margin-left:0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  main{
-    padding:2rem 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ===== SHIMMER EFFECT ===== */
+.shimmer-text {
+  background: linear-gradient(90deg, 
+    #22c55e 0%, 
+    #38bdf8 25%, 
+    #22c55e 50%, 
+    #38bdf8 75%, 
+    #22c55e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ===== DESKTOP ENHANCEMENTS ===== */
+@media (min-width: 768px) {
+  /* Navbar */
+  nav {
+    padding: 1.2rem 2rem;
+  }
+  
+  nav .logo {
+    font-size: 1.6rem;
+  }
+  
+  nav .links {
+    gap: 1.2rem;
+  }
+  
+  nav .links a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Main Container */
+  .main-container {
+    padding: 2rem;
+  }
+  
+  /* Header */
+  .page-header {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  
+  .page-header .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  /* Content Grid */
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  /* Sections */
+  .creator-profile,
+  .contact-info,
+  .social-media,
+  .policies {
+    padding: 2.5rem;
+  }
+  
+  .profile-image {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .profile-name {
+    font-size: 2.2rem;
+  }
+  
+  /* Social Links Grid */
+  .social-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .social-links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== SMALL MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 360px) {
+  nav .links a {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .page-header .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+@media (hover: none) {
+  .info-card:hover,
+  .social-link:hover,
+  .policy-card:hover {
+    transform: none;
+  }
+  
+  .profile-image:hover {
+    transform: none;
+  }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(2, 6, 23, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #22c55e, #38bdf8);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #16a34a, #0284c7);
 }
 </style>
 </head>
@@ -163,98 +800,416 @@ footer .symbol{
     <a href="features.html">Progress📈 </a>
     <a href="contact.html" class="active">Contact 💀</a>
   </div>
-</nav>
+</nav>	
 
-<main>
-
-<!-- ===== CREATOR INFO ===== -->
-
-<!-- ===== CREATOR PHOTO ===== -->
-<section class="section" style="text-align:center;">
-  <img 
-    src="Anish.png" 
-    alt="Anish Kushwaha"
-    style="
-      width:180px;
-      height:180px;
-      object-fit:cover;
-      border-radius:50%;
-      border:3px solid rgba(34,197,94,.6);
-      box-shadow:0 10px 30px rgba(0,0,0,.4);
-      margin-bottom:1.5rem;
-    "
-  >
-  <h2 style="margin-bottom:.5rem;">Anish Kushwaha</h2>
-  <p style="color:#94a3b8;">
-    Creator & Developer of FocusRoom
-  </p>
-</section>
-<section class="section">
-  <h2><i class="fas fa-user"></i> Creator Information</h2>
-  <p>
-    FocusRoom is independently designed and developed by <strong>Anish Kushwaha</strong>
-    as a privacy-first, distraction-free study platform dedicated to CISCE
-    (ICSE & ISC) students preparing for the 2026 board examinations.
-  </p>
-  <p>
-    This platform is built with the philosophy that technology should
-    <em>support focus, not exploit attention</em>.
-  </p>
-</section>
-
-<!-- ===== PRIVACY POLICY ===== -->
-<section class="section">
-  <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
-
-  <p>
-    FocusRoom respects your privacy by design.
-    This website operates entirely on the client side and does not collect,
-    transmit, or store personal data on any external servers.
-  </p>
-
-  <ul>
-    <li>No user accounts or logins are required.</li>
-    <li>No tracking cookies, analytics, or third-party trackers are used.</li>
-    <li>No personal information is collected or shared.</li>
-    <li>All data (timers, goals, notes) is stored locally in your browser.</li>
-    <li>Clearing your browser data permanently removes all stored information.</li>
-  </ul>
-
-  <p style="margin-top:1rem;">
-    FocusRoom does <strong>not</strong> use advertising networks,
-    fingerprinting, screen monitoring, or behavioral analytics.
-  </p>
-</section>
-
-<!-- ===== COPYRIGHT ===== -->
-<section class="section">
-  <h2><i class="fas fa-copyright"></i> Copyright & Usage</h2>
-
-  <p>
-    © 2026 Anish Kushwaha. All rights reserved.
-  </p>
-
-  <ul>
-    <li>This website and its source code are protected under applicable copyright laws.</li>
-    <li>Unauthorized reproduction, modification, or redistribution is prohibited.</li>
-    <li>Educational reference is permitted with proper credit.</li>
-  </ul>
-
-  <p style="margin-top:1rem; font-style:italic;">
-    “I don’t follow the universe — I reprogram it.”
-  </p>
-</section>
-
-</main>
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="main-container">
+  
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1><i class="fas fa-id-card"></i> CREATOR INTRO...</h1>
+    <p class="subtitle">Meet the creator of FocusRoom • Contact information • Privacy policy & Copyright • All social links</p>
+  </div>
+  
+  <!-- CONTENT GRID -->
+  <div class="content-grid">
+    
+    <!-- CREATOR PROFILE -->
+    <div class="creator-profile">
+      <div class="profile-header">
+        <img src="Anish.png" alt="Anish Kushwaha" class="profile-image" id="profileImage">
+        <div class="profile-info">
+          <h1 class="profile-name shimmer-text">ANISH KUSHWAHA</h1>
+          <div class="profile-title">
+            <i class="fas fa-user-graduate"></i> Student • Engineer • Cybersecurity Enthusiast<br>
+            <i class="fas fa-code"></i> Web Developer • Research-Oriented Thinker<br>
+            <i class="fas fa-video"></i> Cosmologist • Quantum Physicist
+          </div>
+          <div class="profile-signature">
+            <i class="fas fa-quote-left"></i> I don't follow the universe — I reprogram it.
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid-2col">
+        <div class="info-card" style="border-left-color: #22c55e;">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="card-title">Education</h3>
+          </div>
+          <p class="card-content">
+            Currently[2026] pursuing Matriculation [ST.Mary's Scahool] with focus on Cybersecurity, Web Development, Penatration Testing, and Cosmology. Passionate about creating billion dollars tach tools for students.
+          </p>
+        </div>
+        
+        <div class="info-card" style="border-left-color: #38bdf8;">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="card-title">FocusRoom Vision</h3>
+          </div>
+          <p class="card-content">
+            Created FocusRoom to help CISCE 2026 board students of 10th & 12th study collaboratively with full tracking of their accademic growth. The platform emphasizes privacy, security, and productive learning.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CONTACT INFORMATION -->
+    <div class="contact-info">
+      <h2 class="section-title">
+        <i class="fas fa-envelope-open-text"></i> Contact Information
+      </h2>
+      
+      <div class="grid-2col">
+        <div class="info-card" style="border-left-color: #ea4335;">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3 class="card-title">Email Addresses</h3>
+          </div>
+          <p class="card-content">
+            <strong>Primary / Public Email:</strong><br>
+            <a href="mailto:Anish-Kushwaha@zohomail.in" class="card-link">
+              <i class="fas fa-at"></i> Anish-Kushwaha@zohomail.in
+            </a><br><br>
+            <strong>Privacy-focused Email:</strong><br>
+            <a href="mailto:Anish_Kushwaha@proton.me" class="card-link">
+              <i class="fas fa-lock"></i> Anish_Kushwaha@proton.me
+            </a>
+          </p>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SOCIAL MEDIA -->
+    <div class="social-media">
+      <h2 class="section-title">
+        <i class="fas fa-share-alt"></i> Connect With Me
+      </h2>
+      <p class="card-content" style="margin-bottom: 1.2rem; color: #94a3b8;">
+        Connect with me across various platforms for collaborations, discussions, or just to say hi!
+      </p>
+      
+      <div class="social-links-grid">
+        <!-- Official Websites -->
+        <a href="https://anish-kushwaha.b12sites.com" target="_blank" class="social-link website">
+          <div class="social-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">Personal Website</div>
+            <div class="social-handle">anish-kushwaha.b12sites.com</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <a href="https://anish-kushwaha.github.io" target="_blank" class="social-link website">
+          <div class="social-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">Portfolio (GitHub)</div>
+            <div class="social-handle">anish-kushwaha.github.io</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <!-- Developer Platforms -->
+        <a href="https://github.com/Anish-Kushwaha" target="_blank" class="social-link github">
+          <div class="social-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">GitHub</div>
+            <div class="social-handle">@Anish-Kushwaha</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <a href="https://leetcode.com/Anish-Kushwaha" target="_blank" class="social-link leetcode">
+          <div class="social-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">LeetCode</div>
+            <div class="social-handle">@Anish-Kushwaha</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <a href="https://www.hackerrank.com/profile/Anish_Kushwaha" target="_blank" class="social-link hackerrank">
+          <div class="social-icon">
+            <i class="fab fa-hackerrank"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">HackerRank</div>
+            <div class="social-handle">@Anish_Kushwaha</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <!-- Professional Networks -->
+        <a href="https://www.linkedin.com/in/anish-kushwaha-43a915383" target="_blank" class="social-link linkedin">
+          <div class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">LinkedIn</div>
+            <div class="social-handle">@anish-kushwaha</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <!-- Social Media -->
+        <a href="https://x.com/Anish_Kushwaha_" target="_blank" class="social-link twitter">
+          <div class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">X (Twitter)</div>
+            <div class="social-handle">@Anish_Kushwaha_</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <a href="https://www.facebook.com/Anishkushwahaji" target="_blank" class="social-link facebook">
+          <div class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">Facebook</div>
+            <div class="social-handle">@Anishkushwahaji</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <a href="https://t.me/Anish_Kushwaha_ji" target="_blank" class="social-link telegram">
+          <div class="social-icon">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">Telegram</div>
+            <div class="social-handle">@Anish_Kushwaha_ji</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <!-- Content Creation -->
+        <a href="https://www.youtube.com/@cosmologist_anish" target="_blank" class="social-link youtube">
+          <div class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">YouTube</div>
+            <div class="social-handle">@cosmologist_anish</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+        
+        <!-- Gaming/Skill Platforms -->
+        <a href="https://www.chess.com/member/Anish-Kushwaha" target="_blank" class="social-link chess">
+          <div class="social-icon">
+            <i class="fas fa-chess-knight"></i>
+          </div>
+          <div class="social-info">
+            <div class="social-platform">Chess.com</div>
+            <div class="social-handle">@Anish-Kushwaha</div>
+          </div>
+          <i class="fas fa-external-link-alt" style="opacity: 0.7;"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- POLICIES SECTION -->
+    <div class="policies">
+      <h2 class="section-title">
+        <i class="fas fa-gavel"></i> Policies & Legal
+      </h2>
+      
+      <div class="policy-card privacy">
+        <h3 class="policy-title">
+          <i class="fas fa-shield-alt"></i> Privacy Policy
+        </h3>
+        <div class="policy-content">
+          <p><strong>FocusRoom is built with privacy-first principles:</strong></p>
+          <ul>
+            <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> <strong>No Data Collection:</strong> We don't collect, store, or log any personal information</li>
+            <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> <strong>No Tracking:</strong> No cookies, analytics, or user behavior tracking</li>
+            <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> <strong>Local Storage Only:</strong> Study rooms and data exist only in your browser's localStorage</li>
+            <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> <strong>No Backend Servers:</strong> Everything runs locally on your device</li>
+            <li><i class="fas fa-check-circle" style="color: #22c55e;"></i> <strong>Automatic Cleanup:</strong> Rooms automatically delete after 24 hours of inactivity</li>
+          </ul>
+          <p style="margin-top: 0.8rem;">
+            This is a personal project created to help students. Your privacy is respected and protected.
+          </p>
+        </div>
+      </div>
+      
+      <div class="policy-card copyright">
+        <h3 class="policy-title">
+          <i class="fas fa-copyright"></i> Copyright Disclaimer
+        </h3>
+        <div class="policy-content">
+          <p><strong>© 2026 Anish Kushwaha • All Rights Reserved</strong></p>
+          <ul>
+            <li><i class="fas fa-code" style="color: #38bdf8;"></i> <strong>Code:</strong> All source code is personal intellectual property</li>
+            <li><i class="fas fa-paint-brush" style="color: #38bdf8;"></i> <strong>Design:</strong> Original UI/UX design created specifically for FocusRoom</li>
+            <li><i class="fas fa-book" style="color: #38bdf8;"></i> <strong>Content:</strong> Educational content tailored for CISCE 2026 students</li>
+            <li><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> <strong>Fair Use:</strong> Third-party libraries and fonts are used under their respective licenses</li>
+          </ul>
+          <p style="margin-top: 0.8rem;">
+            This project is for educational purposes. No commercial use without explicit permission. Agar Copy kare ke try kailasan, Maar ke Muwa dem !!.
+          </p>
+        </div>
+      </div>
+      
+      <div class="policy-card disclaimer">
+        <h3 class="policy-title">
+          <i class="fas fa-exclamation-circle"></i> General Disclaimer
+        </h3>
+        <div class="policy-content">
+          <ul>
+            <li><i class="fas fa-graduation-cap" style="color: #8b5cf6;"></i> FocusRoom is a <strong>personal educational tool</strong>, not affiliated with CISCE</li>
+            <li><i class="fas fa-chalkboard-teacher" style="color: #8b5cf6;"></i> Intended to <strong>supplement</strong> official study materials, not replace them</li>
+            <li><i class="fas fa-users" style="color: #8b5cf6;"></i> Collaborative features are <strong>peer-to-peer</strong> study aids</li>
+            <li><i class="fas fa-heart" style="color: #ec4899;"></i> Created with full privacy️ to help students study better together</li>
+          </ul>
+          <p style="margin-top: 0.8rem; font-style: italic;">
+            "M1887 is the most powerful weapon which you can use to change the game." :- Anish Kushwaha
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <p class="quote">"Discipline is choosing between what you want now and what you want most."</p>
-  <div class="meta">
-    © 2026 Anish Kushwaha • All rights reserved
+  <div class="boards-info">
+    <h4>Dedicated to CISCE Boards 2026</h4>
+    <p>ICSE (Class 10) & ISC (Class 12) students can use this platform for focused preparation and collaborative study sessions.</p>
   </div>
-  <div class="symbol">⚚Ⓐ⚚</div>
+  
+  <p class="quote">"The secret of getting ahead is getting started." — Mark Twain</p>
+  
+  <div class="meta">
+    <p style="font-style: italic; margin-bottom: 0.5rem;">"I don't follow the universe — I reprogram it."</p>
+    © 2026 Anish Kushwaha • All rights reserved<br>
+    [Creator - FocusRoom]
+  </div>
+
+  <div class="symbol">
+    ⚚Ⓐ⚚
+  </div>
 </footer>
 
+<script>
+// ===== ANIMATION CONTROL =====
+document.addEventListener('DOMContentLoaded', function() {
+  // Add staggered animation to social links
+  const socialLinks = document.querySelectorAll('.social-link');
+  socialLinks.forEach((link, index) => {
+    link.style.animationDelay = `${index * 0.1}s`;
+  });
+  
+  // Add animation to info cards
+  const infoCards = document.querySelectorAll('.info-card');
+  infoCards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.15}s`;
+  });
+  
+  // Profile image hover effect
+  const profileImage = document.getElementById('profileImage');
+  if (profileImage) {
+    profileImage.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.05)';
+    });
+    
+    profileImage.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+    });
+  }
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Add click animation to cards
+  document.querySelectorAll('.info-card, .policy-card').forEach(card => {
+    card.addEventListener('click', function() {
+      this.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    });
+  });
+  
+  // Fix iOS viewport issues
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+  }
+  
+  // Handle image loading error
+  profileImage.onerror = function() {
+    this.src = 'https://ui-avatars.com/api/?name=Anish+Kushwaha&background=22c55e&color=fff&size=200&bold=true';
+    this.alt = 'Anish Kushwaha Avatar';
+  };
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Observe elements for scroll animations
+document.querySelectorAll('.info-card, .policy-card, .social-link').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+
+// Handle orientation change
+window.addEventListener('orientationchange', function() {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
+});
+
+// Fix viewport on resize
+window.addEventListener('resize', function() {
+  document.body.style.overflowX = 'hidden';
+});
+</script>
 </body>
-  </html>
+</html>
